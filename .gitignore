@@ -4,8 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
-.env
-env
+
+
 
 # testing
 /coverage
@@ -28,6 +28,10 @@ yarn-error.log*
 
 # local env files
 .env*.local
+
+
+# Secret 
+.env
 
 # vercel
 .vercel
