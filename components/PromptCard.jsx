@@ -13,7 +13,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     const pathname = usePathname();
 
     const handleProfileClick = () => {
-      if(session?.user.id === post.creator._id) return router.push(`/profile/${post.creator.id}`);
+      if(session?.user.id === post.creator._id) return router.push(`/profile`);
 
       router.push(`/profile/${post.creator._id}?name=${post.creator.username}`);
     }
