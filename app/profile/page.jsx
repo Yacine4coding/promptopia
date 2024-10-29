@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useSession } from '@node_modules/next-auth/react'
 import { useRouter } from '@node_modules/next/navigation'
 
-import Profile from '@components/profile'
+import Profile from '@components/Profile'
 
 const MyProfile = () => {
 
