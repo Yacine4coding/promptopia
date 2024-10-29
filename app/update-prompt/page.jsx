@@ -5,6 +5,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import Form from "@components/Form";
 
+// Forces the page to be dynamic, bypassing static data requirements
+export const dynamic = 'force-dynamic';
+
 const EditPrompt = () => {
     const router = useRouter();
     const [submitting, setSubmitting] = useState(false);

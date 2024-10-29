@@ -5,6 +5,9 @@ import { useSearchParams } from "next/navigation";
 
 import Profile from "@components/Profile";
 
+// Forces the page to be dynamic, bypassing static data requirements
+export const dynamic = 'force-dynamic';
+
 const UserProfile = ({ params }) => {
   const searchParams = useSearchParams();
   const userName = searchParams.get("name");
