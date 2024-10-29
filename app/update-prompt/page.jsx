@@ -8,7 +8,7 @@ import Form from "@components/Form";
 const EditPrompt = () => {
     const router = useRouter();
     const [submitting, setSetsubmitting] = useState(false);
-    const searchParams = useSearchParams();
+    const [searchParams] = useSearchParams();
     const promptId = searchParams.get('id');
 
     const [post, setPost] = useState({
@@ -17,7 +17,6 @@ const EditPrompt = () => {
     });
 
     useEffect(() => {
-        console.log("here --------------------");
         
         const getParompDetails = async () => {
             const response = await fetch(`/api/prompt/${promptId}`);
