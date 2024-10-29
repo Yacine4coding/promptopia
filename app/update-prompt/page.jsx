@@ -7,13 +7,13 @@ import Form from "@components/Form";
 
 const EditPrompt = () => {
     const router = useRouter();
-    const [submitting, setSetsubmitting] = useState(false);
-    const [searchParams] = useSearchParams();
-    const promptId = searchParams.get('id');
+    const [submitting, setSubmitting] = useState(false);
+    const searchParams = useSearchParams();
+    const promptId = searchParams ? searchParams.get('id') : null;
 
     const [post, setPost] = useState({
-        prompt:'',
-        tag:'',
+        prompt: '',
+        tag: '',
     });
 
     useEffect(() => {
