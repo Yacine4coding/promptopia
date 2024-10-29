@@ -18,7 +18,6 @@ const MyProfile = () => {
     setPosts(data);
   }
 
-  
   useEffect(() => {
     if(session?.user.id)fetchPosts();
   }, []);

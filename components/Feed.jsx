@@ -21,24 +21,49 @@ const PromptCardList = ({ data, handleTagClick }) => {
 
 
 const Feed = () => {
+  // Search handle
   const [searchText, setSearchText] = useState('');
-  const [posts, setPosts] = useState([])
+  const [searchTimeout,setSearchTimeout] = useState(null);
+  const [searchResult, setSearchResult] = useState([]);
 
-  const handleSearchChange = (e) => {
-    // setSearchText(e.target.value);
-  }
+  const [allPosts, setAllPosts] = useState([]);
+
 
   const fetchPosts = async () => {
     const response = await fetch('/api/prompt');
     const data = await response.json();
-    setPosts(data);
-    console.log(data);
+    setAllPosts(data);
   }
 
   
   useEffect(() => {
     fetchPosts();
-  }, []);
+  },[]);
+
+
+  const filterPrompts = (searchText) => {
+    const regex = new RegExp(searchText, 'i') // 'i' flag for case-insensetive search 
+    return allPosts.filter(post => post.prompt.match(regex) 
+                        || post.tag.match(regex) 
+                        || post.creator.username.match(regex)
+    );
+  }
+  const handleSearchChange = (e) => {
+    clearTimeout(searchTimeout);
+    setSearchText(e.target.value);
+
+    setSearchTimeout(
+      setTimeout(() => {
+        setSearchResult(filterPrompts(searchText));
+      }, 500)
+    );
+  }
+
+  const handleTagClick= (tagName) => {
+    setSearchText(tagName.slice(1));
+    setSearchResult(filterPrompts(tagName.slice(1)));
+  }
+
 
   return (
     <section className="feed">
@@ -52,10 +77,18 @@ const Feed = () => {
           className="search_input peer"
         />
       </form>
-      <PromptCardList 
-        data={posts}
-        handleTagClick={() => {}}
-      />
+      {searchText? (
+        <PromptCardList 
+          data={searchResult}
+          handleTagClick={handleTagClick}
+        />
+      ):(
+        <PromptCardList 
+          data={allPosts}
+          handleTagClick={handleTagClick}
+        />
+      )}
+      
       
     </section>
   )
