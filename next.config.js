@@ -7,6 +7,9 @@ const nextConfig = {
         hostname: 'lh3.googleusercontent.com',
       },
     ],
+  },  
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
   },
   webpack(config) {
     config.experiments = {
